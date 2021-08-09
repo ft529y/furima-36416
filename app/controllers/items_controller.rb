@@ -13,4 +13,8 @@ class ItemsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+
+  def item_params
+    params.require(:item).permit(:image)
+  end
 end

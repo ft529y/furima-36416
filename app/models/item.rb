@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -12,7 +14,7 @@ class Item < ApplicationRecord
     validates :description
     validates :selling_price
   end
-
+  validates :product_name, length: {maximum: 40}
   validates :description, length: { maximum: 1000 }
 
   with_options numericality: { other_than: 1, message: "can't be blank"} do
