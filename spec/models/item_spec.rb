@@ -18,15 +18,15 @@ RSpec.describe Item, type: :model do
         @item.description = 'a' * 1000
         expect(@item).to be_valid
       end
-      it 'sellingpriceが300円以上なら登録できること' do
+      it 'selling_priceが300円以上なら登録できること' do
         @item.selling_price = 300
         expect(@item).to be_valid
       end
-      it 'sellingpriceが9,999,999円以下なら登録できること' do
+      it 'selling_priceが9,999,999円以下なら登録できること' do
         @item.selling_price = 9999999
         expect(@item).to be_valid
       end
-      it 'sellingpriceが半角数値なら登録できること' do
+      it 'selling_priceが半角数値なら登録できること' do
         @item.selling_price = 3000
         expect(@item).to be_valid
       end
@@ -86,18 +86,23 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Description is too long (maximum is 1000 characters)"
       end
-      it 'sellingpriceが299円以下だと登録できないこと' do
+      it 'selling_priceが299円以下だと登録できないこと' do
         @item.selling_price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include "Selling price must be greater than or equal to 300"
       end
-      it 'sellingpriceが10,000,000円以上だと登録できないこと' do
+      it 'selling_priceが10,000,000円以上だと登録できないこと' do
         @item.selling_price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include "Selling price must be less than or equal to 9999999"
       end
-      it 'sellingpriceが半角数値以外だと登録できなこと' do
+      it 'selling_priceが半角数値以外だと登録できなこと' do
         @item.selling_price = '３０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Selling price is not a number"
+      end
+      it 'selling_priceが半角英数時混合では登録出来ないこと' do
+        @item.selling_price = 'a1000'
         @item.valid?
         expect(@item.errors.full_messages).to include "Selling price is not a number"
       end
