@@ -47,27 +47,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
       it 'category_idが1では登録できないこと' do
-        @item.category_id = "1"
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
       it 'condtion_idが1では登録できないこと' do
-        @item.condition_id = "1"
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Condition can't be blank"
       end
       it 'burdenが1では登録できないこと' do
-        @item.burden_id = "1"
+        @item.burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Burden can't be blank"
       end
       it 'areaが1では登録できないこと' do
-        @item.area_id = "1"
+        @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Area can't be blank"
       end
       it 'days_to_ship_idが1では登録できないこと' do
-        @item.days_to_ship_id = "1"
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Days to ship can't be blank"
       end
