@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include 'Email is invalid'
       end
-  
+
       it 'passwordが空では登録できないこと' do
         @user.password = ''
         @user.valid?
@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
         @user.password = 'b１b１b１'
         @user.password_confirmation = 'b１b１b１'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password  is invalid. Include both letters and numbers"
+        expect(@user.errors.full_messages).to include 'Password  is invalid. Include both letters and numbers'
       end
       it 'パスワードとパスワード（確認）は、値の一致していないと登録できない' do
         @user.password = 'a1a1a1'

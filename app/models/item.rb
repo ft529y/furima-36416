@@ -9,12 +9,12 @@ class Item < ApplicationRecord
   belongs_to :area
   belongs_to :days_to_ship
 
-
   with_options presence: true do
-    validates :product_name, length: {maximum: 40}
+    validates :product_name, length: { maximum: 40 }
     validates :description, length: { maximum: 1000 }
     validates :image
-    validates :selling_price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to:9_999_999 }, format: { with: /\A[0-9]+\z/ }
+    validates :selling_price,
+              numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
@@ -24,5 +24,4 @@ class Item < ApplicationRecord
     validates :area_id
     validates :days_to_ship_id
   end
-
 end
