@@ -44,11 +44,9 @@ class ItemsController < ApplicationController
   end
 
   def check_user
-    @item = Item.find(params[:id])
-    if @item.user_id == current_user.id
-      render :edit
-    else
-      redirect_to root_path
-    end
+    item = Item.find(params[:id])
+   unless current_user.id == item.user_id
+    redirect_to root_path
+   end
   end
 end
