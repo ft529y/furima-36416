@@ -47,7 +47,8 @@ has_one :purchase
 ### Association
 
 belongs_to :user
-has_one :delivery_address
+belongs_to :item
+has_one :delivery
 
 ## deliveriesテーブル
 
