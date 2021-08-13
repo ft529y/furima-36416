@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_params, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
+  before_action :check_purchased_edit, only: [:edit, :update]
 
   def index
     @items = Item.order('created_at DESC')
@@ -49,6 +50,13 @@ class ItemsController < ApplicationController
   def check_user
     redirect_to root_path unless current_user.id == @item.user_id
   end
+
+  def check_purchased_edit
+    if @item.purchase.present?
+      redirect_to root_path
+    end
+  end
+
 
   def set_params
     @item = Item.find(params[:id])
