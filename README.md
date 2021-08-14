@@ -37,7 +37,7 @@ has_many :purchases
 belongs_to :user
 has_one :purchase
 
-## purchaseテーブル
+## purchasesテーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -47,9 +47,10 @@ has_one :purchase
 ### Association
 
 belongs_to :user
-has_one :delivery_address
+belongs_to :item
+has_one :delivery
 
-## deliveryテーブル
+## deliveriesテーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |

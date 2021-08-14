@@ -74,8 +74,7 @@ RSpec.describe Item, type: :model do
         it 'selling_priceが空では登録できないこと' do
           @item.selling_price = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include "Selling price can't be blank", 'Selling price is invalid',
-                                                        'Selling price is not a number'
+          expect(@item.errors.full_messages).to include "Selling price can't be blank"
         end
         it 'product_nameが41文字以上だと登録できないこと' do
           @item.product_name = 'a' * 41
