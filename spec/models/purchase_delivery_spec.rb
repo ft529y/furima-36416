@@ -28,7 +28,7 @@ RSpec.describe PurchaseDelivery, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @purchase_delivery.postal_code = ''
         @purchase_delivery.valid?
-        expect(@purchase_delivery.errors.full_messages).to include("Postal code can't be blank", 'Postal code is invalid')
+        expect(@purchase_delivery.errors.full_messages).to include("Postal code can't be blank")
       end
       it '郵便番号の区切りがハイフン無しの場合だと保存できないこと' do
         @purchase_delivery.postal_code = '1234567'
