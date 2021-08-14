@@ -13,10 +13,6 @@ RSpec.describe PurchaseDelivery, type: :model do
       it '全ての値が正しく入力されていれば保存できること' do
         expect(@purchase_delivery).to be_valid
       end
-      it 'building_nameが空でも保存できること' do
-        @purchase_delivery.building_name = ''
-        expect(@purchase_delivery).to be_valid
-      end
       it '建設名が空でも保存できること' do
         @purchase_delivery.building_name = ''
         expect(@purchase_delivery).to be_valid
@@ -74,7 +70,10 @@ RSpec.describe PurchaseDelivery, type: :model do
         @purchase_delivery.valid?
         expect(@purchase_delivery.errors.full_messages).to include('Phone number is invalid')
       end
-      it '' do
+      it '電話番号は英数字混合の場合登録できないこと' do
+        @purchase_delivery.phone_number = 'abcde012345'
+        @purchase_delivery.valid?
+        expect(@purchase_delivery.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end
