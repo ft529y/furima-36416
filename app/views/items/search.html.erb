@@ -1,0 +1,41 @@
+<%= render "shared/header" %>
+
+<div class="result-view">
+  <h1>検索結果</h1>
+</div>
+<ul class='item-lists'>
+<% if @results.length != 0 %>
+  <% @results.each do |result| %>
+  <li class='list'>
+    <%= link_to item_path(result) do %>
+    <div class='item-img-content'>
+      <%= image_tag result.image, class: "item-img" %>
+
+      <% if result.purchase.present? %>
+      <div class='sold-out'>
+        <span>Sold Out!!</span>
+      </div>
+      <% end %>
+
+    </div>
+    <div class='item-info'>
+      <h3 class='item-name'>
+        <%= result.product_name %>
+      </h3>
+      <div class='item-price'>
+        <span><%= result.selling_price %>円<br><%= result.burden.name%></span>
+        <div class='star-btn'>
+          <%= image_tag "star.png", class:"star-icon" %>
+          <span class='star-count'>0</span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+<% else %>
+  <p class="result-none">該当する商品はありません</p>
+<% end %>
+
+<%= render "shared/footer" %>

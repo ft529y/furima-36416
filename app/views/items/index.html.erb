@@ -126,8 +126,32 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <ul class='item-lists'>
 
+  <div class="box-square">
+    <span class="box-title"><h1>商品検索</h1></span>
+    <%= search_form_for @i, url: search_items_path do |f| %>
+      <%= f.label :category_id_eq, 'カテゴリー名', class:"category-name" %>
+      <%= f.collection_select :category_id_eq, Category.all, :id, :name, {include_blank: '指定なし'},{class:"select-box", id:"item-category"} %>
+      <br>
+
+      <%= f.label :selling_price, '価格' %>
+      <br>
+      <%= f.radio_button :selling_price_lteq, '' %>
+      指定なし
+      <%= f.radio_button :selling_price_lteq, '1000' %>
+      1000円以下
+      <%= f.radio_button :selling_price_lteq, '3000' %>
+      3000円以下
+      <%= f.radio_button :selling_price_lteq, '10000' %>
+      10000円以下
+      <%= f.radio_button :selling_price_lteq, '30000' %>
+      30000円以下
+      <br>
+      <%= f.submit '検索', class: "search-btn" %>
+    <% end %>
+  </div>
+
+    <ul class='item-lists'>
       <% if Item.exists? %>
         <% @items.each do |item| %>
           <li class='list'>
