@@ -3,9 +3,14 @@ class ItemsController < ApplicationController
   before_action :set_params, only: [:show, :edit, :update, :destroy]
   before_action :check_user, only: [:edit, :update, :destroy]
   before_action :check_purchased_edit, only: [:edit, :update]
+  before_action :search_item, only: [:index, :search]
 
   def index
     @items = Item.order('created_at DESC')
+  end
+
+  def search
+    @results = @i.result
   end
 
   def new
@@ -57,5 +62,9 @@ class ItemsController < ApplicationController
 
   def set_params
     @item = Item.find(params[:id])
+  end
+
+  def search_item
+    @i = Item.ransack(params[:q])
   end
 end

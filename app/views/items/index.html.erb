@@ -126,8 +126,32 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <ul class='item-lists'>
 
+  <div class="box-square">
+    <span class="box-title"><h1>商品検索</h1></span>
+    <%= search_form_for @i, url: search_items_path do |f| %>
+      <%= f.label :category_id_eq, 'カテゴリー名', class:"category-name" %>
+      <%= f.collection_select :category_id_eq, Category.all, :id, :name, {include_blank: '指定なし'},{class:"select-box", id:"item-category"} %>
+      <br>
+
+      <%= f.label :selling_price, '価格' %>
+      <br>
+      <%= f.radio_button :selling_price_lteq, '' %>
+      指定なし
+      <%= f.radio_button :selling_price_lteq, '1000' %>
+      1000円以下
+      <%= f.radio_button :selling_price_lteq, '3000' %>
+      3000円以下
+      <%= f.radio_button :selling_price_lteq, '10000' %>
+      10000円以下
+      <%= f.radio_button :selling_price_lteq, '30000' %>
+      30000円以下
+      <br>
+      <%= f.submit '検索', class: "search-btn" %>
+    <% end %>
+  </div>
+
+    <ul class='item-lists'>
       <% if Item.exists? %>
         <% @items.each do |item| %>
           <li class='list'>
@@ -140,7 +164,6 @@
                 <span>Sold Out!!</span>
               </div>
               <% end %>
-
             </div>
             <div class='item-info'>
               <h3 class='item-name'>
@@ -148,10 +171,24 @@
               </h3>
               <div class='item-price'>
                 <span><%= item.selling_price %>円<br><%= item.burden.name%></span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
+
+              <% if user_signed_in? %>
+                <% if item.user_id != current_user.id %>
+                  <% if Like.exists?(user_id: current_user.id, item_id: item.id) %>
+                    <%= link_to item_like_path(item_id: item.id, id: item.likes[0].id ), method: :delete do %>
+                    <i class="fas fa-heart fa-3x f-col"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to item_likes_path(item.id), method: :post do %>
+                    <i class="far fa-heart fa-3x f-col"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+
+                
+
+
               </div>
             </div>
             <% end %>
