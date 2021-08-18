@@ -23,7 +23,7 @@
         <%= result.product_name %>
       </h3>
       <div class='item-price'>
-        <span><%= result.selling_price %>円<br><%= result.burden.name%></span>
+        <span class="item-price-color"><%= result.selling_price %>円<br><%= result.burden.name%></span>
 
       <% if user_signed_in? %>
         <% if result.user_id != current_user.id %>
