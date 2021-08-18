@@ -283,6 +283,10 @@ a {
 }
 
 .item-name {
+  color: black;
+}
+
+.item-name {
   font-size: 2.5vh;
 }
 
@@ -293,24 +297,9 @@ a {
 }
 
 
-.star-btn {
-  display: flex;
-  align-items: center;
-}
-
-.star-icon {
-  height: 2vh;
-  width: 2vh;
-  margin-right: 0.5vw;
-}
-
-.star-count {
-  font-size: 2vh;
-}
-
 /* //商品一覧 */
 
-// カテゴリー欄
+// カテゴリー検索欄
 .box-square {
   position: relative;
     margin: 2em 0;
@@ -349,4 +338,8 @@ a {
   display: block;
   margin: 24px auto;
   font-size: 24px;
+}
+
+.f-col {
+  color: pink;
 }
