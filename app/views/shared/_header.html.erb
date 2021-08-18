@@ -13,6 +13,10 @@
     <ul class='lists-left'>
       <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
+
+      <% if user_signed_in? %>
+      <li><%= link_to 'お気に入り', user_path(current_user.id), class: "favorite-list" %></li>
+      <% end %>
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
