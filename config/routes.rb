@@ -6,5 +6,7 @@ Rails.application.routes.draw do
       get 'search'
     end
     resources :purchases, only: [:index, :create]
+    resources :likes, only: [:show, :create, :destroy]
   end
+  resources :users, only: :show
 end
