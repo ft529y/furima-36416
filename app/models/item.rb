@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase
   has_one_attached :image
+  has_many :likes, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -19,10 +20,10 @@ class Item < ApplicationRecord
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
-    validates :category_id
     validates :condition_id
     validates :burden_id
     validates :area_id
     validates :days_to_ship_id
   end
+  validates :category_id, inclusion: { in: [1,2,3,4,5,6,7,8,9,10] }
 end

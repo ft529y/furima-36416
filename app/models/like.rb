@@ -2,5 +2,8 @@ class Like < ApplicationRecord
   belongs_to :user
   belongs_to :item
 
-  validates :user_id, uniqueness: { scope: :item_id }
+  with_options presence: true do
+    validates :item_id, uniqueness: { scope: :user_id }
+    validates :item_id
+  end
 end
